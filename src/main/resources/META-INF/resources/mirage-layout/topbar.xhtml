@@ -1,0 +1,149 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:pa="http://primefaces.org/mirage">
+
+    <h:form id="topform">
+        <div class="layout-topbar">
+            <div class="layout-topbar-wrapper">
+                <div class="layout-topbar-left">
+                    <div class="layout-topbar-logo-wrapper">
+                        <a href="dashboard.xhtml" class="layout-topbar-logo">
+                            <p:graphicImage name="images/logo-mirage@2x.png" library="mirage-layout" />
+                            <span class="app-name">e J M S</span>
+                        </a>
+                    </div>
+
+                    <a href="#" class="sidebar-menu-button">
+                        <i class="fa fa-bars"></i>
+                    </a>
+
+                    <a href="#" class="megamenu-mobile-button" style="#{userSession.megaMenuStyle}">
+                        <i class="fa fa-align-right megamenu-icon"></i>
+                    </a>
+
+                    <a href="#" class="topbar-menu-mobile-button">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </a>
+
+                    <!-- Mega Menu -->
+                    <div class="layout-megamenu-wrapper" style="#{userSession.megaMenuStyle}">
+                        <a class="layout-megamenu-button" href="#">
+                            <i class="fa fa-comment"></i>
+                            Admin Menu
+                        </a>
+                        <ul class="layout-megamenu">
+                            <li>
+                                <a href="#">Application Settings <i class="fa fa-angle-down"></i></a>
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-circle"></i>
+                                        <span>
+                                            <h3>Server Setting</h3>
+                                            <span>Server configuration</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-circle"></i>
+                                        <span>
+                                            <h3>User Interface</h3>
+                                            <span>UI Components configuration</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">User Setting<i class="fa fa-angle-down"></i></a>
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-circle"></i>
+                                        <span>
+                                            <h3><a  href="${request.contextPath}/admin/cp/index.xhtml">Change Password</a></h3>
+                                            <span>Change password for admin users</span>
+                                        </span>
+
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-circle"></i>
+                                        <span>
+                                            <h3>Role Assignment</h3>
+                                            <span>Define Roles for users</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="layout-topbar-right">
+                    <ul class="layout-topbar-actions">
+                        <li class="search-item topbar-item">
+                            <a href="#" class="topbar-search-mobile-button">
+                                <i class="topbar-icon fa fa-search"></i>
+                            </a>
+                            <ul class="search-item-submenu">
+                                <li>
+                                    <h:form onsubmit="return false;">
+                                        <h:panelGroup styleClass="md-inputfield search-input-wrapper">
+                                            <p:inputText placeholder="Search..." />
+                                            <i class="fa fa-search"></i>
+                                        </h:panelGroup>
+                                    </h:form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="topbar-item">
+                            <a href="#">
+                                <i class="topbar-icon fa fa-calendar"></i>
+                            </a>
+                            <ul>
+                                <li class="layout-submenu-header">
+                                    <h1>Calendar</h1>
+                                </li>
+                                <li class="calendar">
+                                    <h:form>
+                                        <p:calendar mode="inline" />
+                                    </h:form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="topbar-item profile-item">
+                            <a href="#">
+                                <span class="profile-image-wrapper">
+                                    <p:graphicImage cache="false" value="/its/#{userSession.loggedInIts}" style="border-radius: 50%"/>
+                                </span>
+                                <span class="profile-info-wrapper">
+                                    <h3>#{userSession.loggedInUserName}</h3>
+                                    <span>#{userSession.userRole}</span>
+                                </span>
+                            </a>
+                            <ul class="profile-item-submenu">
+                                <li class="layout-submenu-footer">
+                                    <button class="signout-button"> <a href="/logout" >Logout </a></button> 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="profile-mobile-wrapper">
+                        <li class="topbar-item profile-item">
+                            <a href="#">
+                                <span class="profile-image-wrapper">
+                                    <p:graphicImage cache="false" value="/its/#{userSession.loggedInIts}" style="border-radius: 50%"/>
+                                </span>
+                                <span class="profile-info-wrapper">
+                                    <h3>#{userSession.loggedInUserName}</h3>
+                                    <span>#{userSession.userRole}</span>
+                                </span>
+                            </a>
+                            <ul>
+                                <li class="layout-submenu-footer">
+                                    <button class="signout-button"> <a href="/logout" >Logout </a></button> 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>

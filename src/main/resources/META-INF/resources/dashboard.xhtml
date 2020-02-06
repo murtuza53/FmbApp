@@ -1,0 +1,327 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                template="/mirage-layout/template.xhtml">
+
+    <ui:define name="title">
+        <h:outputText value="Dashboard"/>
+    </ui:define>
+    <ui:define name="head">
+        <style type="text/css">
+            .fa-4x {
+                width: 32px !important;
+                font-size: 32px !important;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="breadcrumb">
+        <li>Dashboard</li>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form id="LoadPageForm">
+            <p:remoteCommand  name="update_page"
+                              process="@this"
+                              update="dashboardform, :growl"
+                              autoRun="true"
+                              onstart=""
+                              actionListener="#{mainDashboardController.refresh()}"
+                              oncomplete=""/>
+        </h:form>
+        <h:form id="dashboardform">
+            <div class="p-grid layout-dashboard">
+                <div class="p-col-12 p-xl-3 p-md-6">
+                    <div class="p-grid p-nogutter overview-box overview-box-1">
+                        <div class="p-col-3 overview-box-icon">
+                            <i class="fa fa-users fa-4x" style="color: indianred"/>
+                        </div>
+                        <div class="p-col-6 overview-box-text">
+                            <h1>ITS Count</h1>
+                            <span>Total Active Members</span>
+                        </div>
+                        <div class="p-col-3 overview-box-status">
+                            <p:commandLink value="#{mainDashboardController.itsCount}" 
+                                           action="/jamaat/master/itsMaster/index" style="color: white;"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-12 p-xl-3 p-md-6">
+                    <div class="p-grid p-nogutter overview-box overview-box-2">
+                        <div class="p-col-3 overview-box-icon">
+                            <i class="fa fa-user fa-4x" style="color: darkorchid"/>
+                        </div>
+                        <div class="p-col-6 overview-box-text">
+                            <h1>HOF</h1>
+                            <span>Total Active HOF</span>
+                        </div>
+                        <div class="p-col-3 overview-box-status">
+                            <p:commandLink value="#{mainDashboardController.hofCount}" 
+                                           action="/jamaat/master/itsMaster/hindex" style="color: white;"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-12 p-xl-3 p-md-6">
+                    <div class="p-grid p-nogutter overview-box overview-box-3">
+                        <div class="p-col-3 overview-box-icon">
+                            <i class="fa fa-user fa-4x" style="color: peachpuff"/>
+                        </div>
+                        <div class="p-col-6 overview-box-text">
+                            <h1>Personal Sabil</h1>
+                            <span>Total Personal Sabil</span>
+                        </div>
+                        <div class="p-col-3 overview-box-status">
+                            <p:commandLink value="#{mainDashboardController.personalSabilCount}" 
+                                           action="/jamaat/sabil/personal/index" style="color: white;"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-12 p-xl-3 p-md-6">
+                    <div class="p-grid p-nogutter overview-box overview-box-4">
+                        <div class="p-col-3 overview-box-icon">
+                            <i class="fa fa-building fa-4x" style="color: darkseagreen"/>
+                        </div>
+                        <div class="p-col-6 overview-box-text">
+                            <h1>Business Sabil</h1>
+                            <span>Total Business Sabil</span>
+                        </div>
+                        <div class="p-col-3 overview-box-status">
+                            <p:commandLink value="#{mainDashboardController.businessSabilCount}" 
+                                           action="/jamaat/sabil/personal/indexb" style="color: white;"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outstanding Summary -->
+                <!-- Left -->
+                <div class="p-col-12 p-lg-6 p-md-6">
+                    <div class="card statistics">
+                        <div class="p-grid">
+                            <div class="p-col-6 title">
+                                <h1>Outstanding Summary</h1>
+                            </div>
+                            <div class="p-col-6 task-info" style="text-align: right">
+                                <span></span>
+                            </div>
+                        </div>
+                        <p:dataTable id="summarytable" var="data" value="#{mainDashboardController.summaryReportList}" reflow="true"
+                                     paginator="false">
+
+                            <p:column headerText="Description" style="text-align: center">
+                                <h:outputText value="#{data.description}" />
+                            </p:column>
+
+                            <p:column headerText="Invoiced" style="text-align: right">
+                                <h:outputText value="#{data.debit}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Paid" style="text-align: right">
+                                <h:outputText value="#{data.credit}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Balance" style="text-align: right">
+                                <h:outputText value="#{data.balance}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="p-col-12 p-lg-6 p-md-6">
+                    <div class="card statistics">
+                        <div class="p-grid">
+                            <div class="p-col-6 title">
+                                <h1>Pie Breakdown</h1>
+                            </div>
+                            <div class="p-col-6 task-info" style="text-align: right">
+                                <span></span>
+                            </div>
+                        </div>
+                        <p:chart type="pie" model="#{mainDashboardController.summaryPieModel}" />
+                    </div>
+                </div>
+
+
+
+                <!-- Sabil Stats -->
+                <!-- Left -->
+                <div class="p-col-12 p-lg-6 p-md-6">
+                    <div class="card statistics">
+                        <div class="p-grid">
+                            <div class="p-col-6 title">
+                                <h1>Sabil Statistics</h1>
+                            </div>
+                            <div class="p-col-6 task-info" style="text-align: right">
+                                <span></span>
+                            </div>
+                        </div>
+                        <p:dataTable id="sabiltable" var="data" value="#{mainDashboardController.sabilReportList}" reflow="true"
+                                     paginator="false">
+
+                            <p:column headerText="Year" style="text-align: center">
+                                <h:outputText value="#{data.description}" />
+                            </p:column>
+
+                            <p:column headerText="Invoiced" style="text-align: right">
+                                <h:outputText value="#{data.debit}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Paid" style="text-align: right">
+                                <h:outputText value="#{data.credit}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Balance" style="text-align: right">
+                                <h:outputText value="#{data.balance}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="p-col-12 p-lg-6 p-md-6">
+                    <div class="card statistics">
+                        <div class="p-grid">
+                            <div class="p-col-6 title">
+                                <h1>Sabil Chart</h1>
+                            </div>
+                            <div class="p-col-6 task-info" style="text-align: right">
+                                <span></span>
+                            </div>
+                        </div>
+                        <p:chart type="bar" model="#{mainDashboardController.sabilBarchartModel}" />
+                    </div>
+                </div>
+
+
+                <!-- Lagat Stats -->
+                <!-- Left -->
+                <div class="p-col-12 p-lg-6 p-md-6">
+                    <div class="card statistics">
+                        <div class="p-grid">
+                            <div class="p-col-6 title">
+                                <h1>Lagat Statistics</h1>
+                            </div>
+                            <div class="p-col-6 task-info" style="text-align: right">
+                                <span></span>
+                            </div>
+                        </div>
+                        <p:dataTable id="lagattable" var="data" value="#{mainDashboardController.lagatReportList}" reflow="true"
+                                     paginator="false">
+
+                            <p:column headerText="Year" style="text-align: center">
+                                <h:outputText value="#{data.description}" />
+                            </p:column>
+
+                            <p:column headerText="Invoiced" style="text-align: right">
+                                <h:outputText value="#{data.debit}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Paid" style="text-align: right">
+                                <h:outputText value="#{data.credit}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Balance" style="text-align: right">
+                                <h:outputText value="#{data.balance}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="p-col-12 p-lg-6 p-md-6">
+                    <div class="card statistics">
+                        <div class="p-grid">
+                            <div class="p-col-6 title">
+                                <h1>Lagat Chart</h1>
+                            </div>
+                            <div class="p-col-6 task-info" style="text-align: right">
+                                <span></span>
+                            </div>
+                        </div>
+                        <p:chart type="bar" model="#{mainDashboardController.lagatBarchartModel}" />
+                    </div>
+                </div>
+
+
+                <!-- Business Stats -->
+                <!-- Left -->
+                <div class="p-col-12 p-lg-6 p-md-6">
+                    <div class="card statistics">
+                        <div class="p-grid">
+                            <div class="p-col-6 title">
+                                <h1>Business Statistics</h1>
+                            </div>
+                            <div class="p-col-6 task-info" style="text-align: right">
+                                <span></span>
+                            </div>
+                        </div>
+                        <p:dataTable id="bustable" var="data" value="#{mainDashboardController.busReportList}" reflow="true"
+                                     paginator="false">
+
+                            <p:column headerText="Year" style="text-align: center">
+                                <h:outputText value="#{data.description}" />
+                            </p:column>
+
+                            <p:column headerText="Invoiced" style="text-align: right">
+                                <h:outputText value="#{data.debit}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Paid" style="text-align: right">
+                                <h:outputText value="#{data.credit}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Balance" style="text-align: right">
+                                <h:outputText value="#{data.balance}" >
+                                    <f:convertNumber pattern="#{systemConfig.decimalFormatString}"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="p-col-12 p-lg-6 p-md-6">
+                    <div class="card statistics">
+                        <div class="p-grid">
+                            <div class="p-col-6 title">
+                                <h1>Business Chart</h1>
+                            </div>
+                            <div class="p-col-6 task-info" style="text-align: right">
+                                <span></span>
+                            </div>
+                        </div>
+                        <p:chart type="bar" model="#{mainDashboardController.busBarchartModel}" />
+                    </div>
+                </div>
+
+
+            </div>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

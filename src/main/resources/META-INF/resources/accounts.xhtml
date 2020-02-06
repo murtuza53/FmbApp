@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/mirage-layout/template.xhtml">
+
+    <!-- <ui:define name="breadcrumb">
+            <li><p:link outcome="/empty">Empty</p:link></li>
+    </ui:define> -->
+
+    <ui:define name="title">
+        <li>Chart of Account</li>
+    </ui:define>
+
+    <ui:define name="body">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <div class="card">
+                    <p:dataTable var="account" value="#{accountService.accountAll}">
+                        <p:column headerText="AccountNo">
+                            <h:outputText value="#{account.accountNo}" />
+                        </p:column>
+
+                        <p:column headerText="AccountName">
+                            <h:outputText value="#{account.accountName}" />
+                        </p:column>
+
+                        <p:column headerText="Transactions">
+                            <h:outputText value="#{account.ledgerList.size()}" />
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
