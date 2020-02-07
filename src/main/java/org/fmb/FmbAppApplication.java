@@ -3,11 +3,9 @@ package org.fmb;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
-import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -28,8 +26,8 @@ public class FmbAppApplication {
     }
 
     // Register HttpSessionEventPublisher
-    @Bean
+    /*@Bean
     public static ServletListenerRegistrationBean httpSessionEventPublisher() {
         return new ServletListenerRegistrationBean(new HttpSessionEventPublisher());
-    }
+    }*/
 }

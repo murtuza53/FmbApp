@@ -22,35 +22,10 @@
                 <div class="nano-content menu-scroll-content">
                     <h:form id="menuform">
                         <pm:menu>
-                            <p:menuitem id="onewindow" value="One Window" icon="fa fa-fw fa-desktop" outcome="/dashboard/onewindow"/>
-                            <p:menuitem id="dashboard" value="Dashboard" icon="fa fa-fw fa-dashboard" outcome="/dashboard"/>
-                            <p:submenu id="master" label="Master Records" icon="fa fa-fw fa-sitemap">
-                                <p:menuitem id="itsmaster" value="ITS Master" icon="fa fa-users" outcome="${request.contextPath}/jamaat/master/itsMaster/index" ajax="false"/>
-                                <p:menuitem id="hofmaster" value="ITS HOF" icon="fa fa-user" outcome="${request.contextPath}/jamaat/master/itsMaster/hindex" ajax="false"/>
-                                <p:menuitem id="housemaster" value="Mumin House" icon="fa fa-home" outcome="${request.contextPath}/jamaat/master/house/index" ajax="false"/>
-                                <p:menuitem id="menumaster" value="Famb Menu" icon="fa fa-utensils" outcome="${request.contextPath}/famb/master/menu/index" ajax="false"/>
-                                <p:menuitem id="thaaliallocation" value="Thaali" icon="fab fa-buffer" outcome="${request.contextPath}/famb/master/thaaliallocation/index" ajax="false"/>
-                                <p:menuitem id="calendar" value="Thaali Calendar" icon="fab fa-buffer" outcome="${request.contextPath}/famb/calendar/index" ajax="false"/>
-                            </p:submenu>
-                            <p:submenu id="sabil" label="Sabil" icon="fa fa-fw fa-file-alt">
-                                <p:menuitem id="scategory" value="Sabil Category" icon="fa fa-cube" outcome="${request.contextPath}/jamaat/sabil/sabilCategory/index" ajax="false"/>
-                                <p:menuitem id="psabil" value="Personal Sabil" icon="fa fa-user" outcome="${request.contextPath}/jamaat/sabil/personal/index" ajax="false"/>
-                                <p:menuitem id="bsabil" value="Business Sabil" icon="fa fa-building" outcome="${request.contextPath}/jamaat/sabil/personal/indexb" ajax="false"/>
-                            </p:submenu>
-
-                            <p:submenu id="accounts" label="Accounts" icon="fa fa-fw fa-file-invoice-dollar">
-                                <p:menuitem id="account" value="Accounts" icon="fa fa-book" outcome="${request.contextPath}/jamaat/master/accountchart/index" ajax="false"/>
-                                <p:menuitem id="inv" value="Invoice" icon="fas fa-file-invoice" outcome="${request.contextPath}/jamaat/accounts/paymentInvoice/index" ajax="false"/>
-                                <p:menuitem id="jv" value="Journal Voucher" icon="fa fa-file" outcome="${request.contextPath}/jamaat/accounts/accountDocument/index" ajax="false"/>
-                                <p:menuitem id="rct" value="Receipt" icon="fa fa-hand-holding-usd" outcome="${request.contextPath}/jamaat/accounts/rct/index" ajax="false"/>
-                                <p:menuitem id="pv" value="Payment Voucher" icon="fa fa-hand-holding-usd" outcome="${request.contextPath}/jamaat/accounts/pv/index" ajax="false"/>
-                            </p:submenu>
-
-                            <p:submenu id="reports" label="Sabil Reports" icon="fa fa-fw fa-chart-bar">
-                                <p:menuitem id="report_monthlycollection" value="Monthly Collection" icon="fa fa-book" outcome="${request.contextPath}/jamaat/sabilreports/monthlycollection" ajax="false"/>
-                                <p:menuitem id="report_outstanding" value="Sabil Outstanding" icon="fa fa-book" outcome="${request.contextPath}/jamaat/sabilreports/sabiloutstanding" ajax="false"/>
-                                <p:menuitem id="report_notinvoiced" value="Not Invoiced" icon="fa fa-book" outcome="${request.contextPath}/jamaat/sabilreports/notinvoiced" ajax="false"/>
-                            </p:submenu>
+                            <p:menuitem id="onewindow" value="One Window" icon="fa fa-fw fa-desktop" />
+                            <p:menuitem id="dashboard" value="Dashboard" icon="fa fa-fw fa-dashboard" />
+                            <p:menuitem id="hofmaster" value="ITS HOF" icon="fa fa-user" ajax="false"/>
+                            <p:menuitem id="calendar" value="Thaali Calendar" icon="fab fa-buffer" ajax="false"/>
                         </pm:menu>
                     </h:form>
                 </div>

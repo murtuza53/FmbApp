@@ -1,22 +1,14 @@
 package org.ejms.controller;
 
 import java.util.List;
-import javax.faces.context.FacesContext;
 import org.ejms.entity.Users;
 import org.ejms.repo.ItsMasterRepository;
 import org.ejms.repo.UserRepository;
-import org.ejms.service.SecurityService;
-import org.ejms.service.UserService;
-import org.ejms.service.UserValidator;
 import org.ejms.util.JsfUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UsersController extends AbstractController<Users> {
@@ -24,20 +16,8 @@ public class UsersController extends AbstractController<Users> {
     private UserRepository facade;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private SecurityService securityService;
-
-    @Autowired
     private ItsMasterRepository itsRepo;
     
-    @Autowired
-    private UserValidator userValidator;
-
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     private List<Users> userList;
     
     private String password;
@@ -67,7 +47,7 @@ public class UsersController extends AbstractController<Users> {
     
     @Override
     public void save(){
-        getSelected().setPassword(bCryptPasswordEncoder.encode(password));
+        //getSelected().setPassword(bCryptPasswordEncoder.encode(password));
         facade.save(getSelected());
         JsfUtil.addSuccessMessage("Success", "Password saved sucessfuly");
     }
@@ -83,28 +63,6 @@ public class UsersController extends AbstractController<Users> {
         JsfUtil.addSuccessMessage("Success", msg);
     }
     
-    @GetMapping("/registration")
-    public String registration(Model model) {
-        model.addAttribute("userForm", new Users());
-
-        return "registration";
-    }
-
-    @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") Users userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
-
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-
-        userService.save(userForm);
-
-        securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
-
-        return "redirect:/dashboard";
-    }
-
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
         if (error != null) {
@@ -118,9 +76,9 @@ public class UsersController extends AbstractController<Users> {
         return "login";
     }
 
-    @GetMapping({"/", "/dashboard"})
+    @GetMapping("/")
     public String dashboard(Model model) {
-        return "dashboard.xhtml";
+        return "index.xhtml";
     }
 
     /**

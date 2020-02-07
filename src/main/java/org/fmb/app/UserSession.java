@@ -14,8 +14,6 @@ import org.ejms.entity.Users;
 import org.ejms.repo.ItsMasterRepository;
 import org.ejms.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.annotation.SessionScope;
 
 /**
@@ -56,14 +54,14 @@ public class UserSession implements Serializable {
     }
 
     public String getLoggedInIts() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null) {
-            resetUser();
-            return "0";
-        }
-        if (auth != null) {
-            return auth.getName();
-        }
+        //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //if (auth == null) {
+        //    resetUser();
+        //    return "0";
+        //}
+        //if (auth != null) {
+        //    return auth.getName();
+        //}
         return "0";
     }
 
