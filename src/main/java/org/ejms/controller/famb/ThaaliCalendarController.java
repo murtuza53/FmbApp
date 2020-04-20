@@ -208,6 +208,19 @@ public class ThaaliCalendarController extends AbstractController<ThaaliCalendar>
     //    return false;
     //}
 
+    public List<ThaaliCalendar> findThaaliCalendarBetweenDateTypeUrsOrEvent(Date fromDate, Date toDate){
+        List<ThaaliCalendar> list = findThaaliCalendarBetweenDate(fromDate, toDate);
+        List<ThaaliCalendar> retList = new LinkedList();
+        if(list!=null){
+            for(ThaaliCalendar tc: list){
+                if(tc.isEventType() || tc.isUrsType()){
+                    retList.add(tc);
+                }
+            }
+        }
+        return retList;
+    }
+    
     public List<ThaaliCalendar> findThaaliCalendarBetweenDate(Date fromDate, Date toDate) {
         calendarList = new LinkedList<ThaaliCalendar>();
         for (Date date = fromDate; DateUtil.isFuture(date, toDate);

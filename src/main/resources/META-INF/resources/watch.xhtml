@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                template="/mirage-layout/template.xhtml">
+
+    <ui:define name="title">
+        <h:outputText value="Dashboard"/>
+    </ui:define>
+
+    <ui:define name="body">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <div class="card">
+                    <p:media value="https://www.youtube.com/v/fJ9rUzIMcZQ&amp;hl=en&amp;fs=1&amp;controls=0&amp;modestbranding=1&amp;showinfo=0&amp;" 
+                             width="600" height="400" player="flash"/>
+                </div>
+            </div>
+            
+            <div class="ui-g-12">
+                <div class="card">
+                    <iframe src="https://player.twitch.tv/?channel=murtua52" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe><a href="https://www.twitch.tv/murtua52&amp;tt_content=text_link&amp;tt_medium=live_embed" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from murtua52 on www.twitch.tv</a>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
