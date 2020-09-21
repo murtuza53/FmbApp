@@ -8,11 +8,11 @@ package org.fmb.app;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import org.ejms.entity.ItsMaster;
-import org.ejms.entity.UserRole;
-import org.ejms.entity.Users;
-import org.ejms.repo.ItsMasterRepository;
-import org.ejms.repo.UserRepository;
+import org.fmb.entity.ItsMaster;
+import org.fmb.entity.UserRole;
+import org.fmb.entity.Users;
+import org.fmb.repo.ItsMasterRepository;
+import org.fmb.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.annotation.SessionScope;
 
